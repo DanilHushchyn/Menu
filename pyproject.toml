@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "menu"
+version = "0.1.0"
+description = ""
+authors = ["dhushchyn <dhushchyn@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.7"
+asgiref = "^3.8.1"
+wheel = "^0.43.0"
+pillow = "^10.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
