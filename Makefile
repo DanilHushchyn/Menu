@@ -11,3 +11,8 @@ m2:
 
 superuser:
 	$(MANAGE) createsuperuser
+
+init:
+	$(MANAGE) makemigrations
+	$(MANAGE) migrate
+	$(MANAGE) createsuperuser
