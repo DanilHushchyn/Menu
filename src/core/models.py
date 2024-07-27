@@ -1,10 +1,8 @@
 from django.db import models
 
 
-# Create your models here.
 class Menu(models.Model):
-    name = models.CharField(max_length=255, null=True)
-    slug = models.SlugField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True)
     date_published = models.DateField(auto_now_add=True)
 
     def __str__(self):

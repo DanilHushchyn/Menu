@@ -1,5 +1,5 @@
 # Menu
-    Example of treeview menu
+    Example of treeview menus
 ## Requirements
 
 - Python 3.10
@@ -7,7 +7,6 @@
 - PostgreSQL
 
 ## Libraries Used
-
 - python = "^3.10"
 - django = "^5.0.7"
 - django-environ = "^0.11.2"
@@ -16,7 +15,6 @@
 
 
 ## Getting Started
-Usually I do init scripts through faker, but today I can’t.
 To initialize the project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/DanilHushchyn/Menu.git .`

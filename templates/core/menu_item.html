@@ -1,23 +1,21 @@
-{% if item.childs.count == 0 %}
+{% if not item.childs %}
 	<li class="nav-item">
-        <a href="{% url 'read_page' item.page.id %}" 
-           {% if item.page.id == page.id %} data-page="current" {% endif %} 
-           class="nav-link">
+        <a href="{% url 'read_page' item.page_id %}" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>
-            <p>{{ item.page.name }}</p>
+            <p>{{ item.page_name }}</p>
         </a>
     </li>
 {% else %}
     <li class="nav-item">
-        <a href="{% url 'read_page' item.page.id %}" class="nav-link">
+        <a href="{% url 'read_page' item.page_id %}" class="nav-link">
             <i class="nav-icon fas fa-circle"></i>
             <p>
-                {{ item.page.name }}
+                {{ item.page_name }}
                 <i class="right fas fa-angle-left"></i>
             </p>
         </a>
         <ul class="nav nav-treeview" style="display: none;">
-            {% for ch in item.childs.all %}
+            {% for ch in item.childs %}
                 {%with item=ch template_name="core/menu_item.html" %}
                    {%include template_name%}
                 {%endwith%}

@@ -1,18 +1,14 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin, TabularInline
+from django.contrib.admin import ModelAdmin
 from django import forms
 
 from src.core.models import Menu, Page, MenuItem
 
 
-# Register your models here.
 @admin.register(Menu)
 class MenuAdminClass(ModelAdmin):
     """
-    Admin configuration for model News.
-
-    This class defines the behavior of the News admin interface,
-    For more information on Django admin customization,
+    Admin configuration for model Menu.
     """
     pass
 
@@ -20,15 +16,16 @@ class MenuAdminClass(ModelAdmin):
 @admin.register(Page)
 class PageAdminClass(ModelAdmin):
     """
-    Admin configuration for model News.
-
-    This class defines the behavior of the News admin interface,
-    For more information on Django admin customization,
+    Admin configuration for model Page.
     """
     pass
 
 
 class MenuItemForm(forms.ModelForm):
+    """
+    ModelForm configuration for model MenuItem.
+    for admin panel class MenuItemAdminClass
+    """
     class Meta:
         model = MenuItem
         fields = "__all__"
@@ -61,10 +58,7 @@ class MenuItemForm(forms.ModelForm):
 @admin.register(MenuItem)
 class MenuItemAdminClass(ModelAdmin):
     """
-    Admin configuration for model News.
-
-    This class defines the behavior of the News admin interface,
-    For more information on Django admin customization,
+    Admin configuration for model MenuItem.
     """
     list_filter = ["menu", ]
     form = MenuItemForm

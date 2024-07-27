@@ -14,35 +14,22 @@ class PageDetailView(DetailView):
     template_name = 'core/page.html'
 
     def get_object(self, queryset=None):
-        # Customize object retrieval logic here
+        """
+        Method gets specific Page instance for rendering
+        """
         pg_id = self.kwargs.get('pk')
         try:
             page = (Page.objects
-                    .prefetch_related(
-                Prefetch(
-                    'menus',
-                    queryset=Menu.objects.prefetch_related(Prefetch(
-                        'items',
-                        queryset=MenuItem.objects
-                        .prefetch_related(Prefetch(
-                            'childs',
-                            queryset=MenuItem.objects.prefetch_related(Prefetch(
-                                'childs',
-                                queryset=MenuItem.objects.prefetch_related(Prefetch(
-                                    'childs',
-                                    queryset=MenuItem.objects.prefetch_related(Prefetch(
-                                        'childs',
-                                        queryset=MenuItem.objects.prefetch_related('childs').select_related('page',
-                                                                                                            'parent')
-                                    )).select_related('page', 'parent')
-                                )).select_related('page', 'parent')
-                            )).select_related('page', 'parent')
-                        ))
-                        .select_related('page', 'parent')
-                    ))
-                )
-            )
-                    .get(pk=pg_id))
+            .prefetch_related(Prefetch(
+                'menus',
+                queryset=Menu.objects
+                .prefetch_related(Prefetch(
+                    'items',
+                    queryset=MenuItem.objects
+                    .select_related('page', 'parent')
+                ))
+            ))
+            ).get(pk=pg_id)
         except Page.DoesNotExist:
             raise Http404(f"Page with id {pg_id}, not found")
         return page
